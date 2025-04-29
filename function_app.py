@@ -18,6 +18,8 @@ def hello(req: func.HttpRequest) -> func.HttpResponse:
             name = req_body.get('name')
 
     if name:
-        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
+        return func.HttpResponse(json.dumps(dict(message=f"Hello, {name}")), 
+                                 status_code=200,
+                                 mimetype='application/json')
     else:
-        return func.HttpResponse(json.dumps(dict(message=f"Hello, {name}")), status_code=200)
+        return func.HttpResponse(json.dumps(dict(message=f"Hello, YOU!!!")), status_code=200)

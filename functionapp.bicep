@@ -1,9 +1,10 @@
 param sites_hello_az400_name string = 'hello-az400'
 param serverfarms_ASP_az400free_8234_externalid string = '/subscriptions/4cdfb42a-eb88-4fc9-9010-7f4db0143b77/resourceGroups/az400-free/providers/Microsoft.Web/serverfarms/ASP-az400free-8234'
+param location string = 'Brazil South'
 
 resource sites_hello_az400_name_resource 'Microsoft.Web/sites@2024-04-01' = {
   name: sites_hello_az400_name
-  location: 'Brazil South'
+  location: location
   kind: 'functionapp,linux'
   properties: {
     enabled: true
@@ -58,7 +59,7 @@ resource sites_hello_az400_name_resource 'Microsoft.Web/sites@2024-04-01' = {
 resource sites_hello_az400_name_ftp 'Microsoft.Web/sites/basicPublishingCredentialsPolicies@2024-04-01' = {
   parent: sites_hello_az400_name_resource
   name: 'ftp'
-  location: 'Brazil South'
+  location: location
   properties: {
     allow: false
   }
@@ -67,7 +68,7 @@ resource sites_hello_az400_name_ftp 'Microsoft.Web/sites/basicPublishingCredenti
 resource sites_hello_az400_name_scm 'Microsoft.Web/sites/basicPublishingCredentialsPolicies@2024-04-01' = {
   parent: sites_hello_az400_name_resource
   name: 'scm'
-  location: 'Brazil South'
+  location: location
   properties: {
     allow: false
   }
@@ -76,7 +77,7 @@ resource sites_hello_az400_name_scm 'Microsoft.Web/sites/basicPublishingCredenti
 resource sites_hello_az400_name_web 'Microsoft.Web/sites/config@2024-04-01' = {
   parent: sites_hello_az400_name_resource
   name: 'web'
-  location: 'Brazil South'
+  location: location
   properties: {
     numberOfWorkers: 1
     defaultDocuments: [
@@ -160,7 +161,7 @@ resource sites_hello_az400_name_web 'Microsoft.Web/sites/config@2024-04-01' = {
 resource sites_hello_az400_name_hello 'Microsoft.Web/sites/functions@2024-04-01' = {
   parent: sites_hello_az400_name_resource
   name: 'hello'
-  location: 'Brazil South'
+  location: location
   properties: {
     script_href: 'https://hello-az400.azurewebsites.net/admin/vfs/home/site/wwwroot/function_app.py'
     test_data_href: 'https://hello-az400.azurewebsites.net/admin/vfs/tmp/FunctionsData/hello.dat'
@@ -195,7 +196,7 @@ resource sites_hello_az400_name_hello 'Microsoft.Web/sites/functions@2024-04-01'
 resource sites_hello_az400_name_sites_hello_az400_name_azurewebsites_net 'Microsoft.Web/sites/hostNameBindings@2024-04-01' = {
   parent: sites_hello_az400_name_resource
   name: '${sites_hello_az400_name}.azurewebsites.net'
-  location: 'Brazil South'
+  location: location
   properties: {
     siteName: 'hello-az400'
     hostNameType: 'Verified'

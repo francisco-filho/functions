@@ -18,8 +18,11 @@ def hello(req: func.HttpRequest) -> func.HttpResponse:
             name = req_body.get('name')
 
     if name:
-        return func.HttpResponse(json.dumps(dict(message=f"Hello, {name}")), 
+        return func.HttpResponse(get_message(name), 
                                  status_code=200,
                                  mimetype='application/json')
     else:
-        return func.HttpResponse(json.dumps(dict(message=f"Hello, YOU!!!")), status_code=200)
+        return func.HttpResponse(get_message('YOU!'), status_code=200)
+
+def get_message(name: str):
+    return json.dumps(dict(message=f"Hello, {name}"))

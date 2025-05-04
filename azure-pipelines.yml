@@ -34,6 +34,8 @@ stages:
         source antenv/bin/activate
         python -m pytest -v --cov
       displayName: Test function
+      env:
+        PYTHONPATH: ".:./.python_packages/lib/site-packages"
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'

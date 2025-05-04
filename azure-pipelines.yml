@@ -30,6 +30,9 @@ stages:
       workingDirectory: $(workingDirectory)
       displayName: 'Install application dependencies'
 
+    - bash: pytest -v
+      displayName: Test function
+
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:

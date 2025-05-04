@@ -32,7 +32,7 @@ stages:
 
     - bash: |
         source antenv/bin/activate
-        pytest -v
+        python -m pytest -v
       displayName: Test function
       workingDirectory: $(workingDirectory)
       env:

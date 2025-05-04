@@ -30,7 +30,9 @@ stages:
       workingDirectory: $(workingDirectory)
       displayName: 'Install application dependencies'
 
-    - bash: pytest -v
+    - bash: |
+        source antenv/bin/activate
+        pytest -v
       displayName: Test function
 
     - task: ArchiveFiles@2
